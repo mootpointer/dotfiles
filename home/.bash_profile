@@ -1,10 +1,7 @@
 source ~/.bashrc
-source ~/.bash_completion.d/*
-
-source ~/.nvm/nvm.sh
 
 
-export EDITOR='/usr/local/bin/mvim -f -c "au VimLeave * !open -a iTerm"'
+export EDITOR='nvim -c "au VimLeave * !open -a iTerm"'
 
 ## Let's have a nice long history
 HISTFILESIZE=1000000000
@@ -18,11 +15,8 @@ export LSCOLORS=exfxcxdxbxegedabagacad
 export GREP_OPTIONS='--color=auto'
 
 ##Aliases
-alias gs="rvm gemset use"
 alias l="ls -laTGih"
 alias gp="ps -ef | grep"
-alias pg="cd ~/Projects/pinion"
-alias z="zeus"
 
 # Compress the cd, ls -l series of commands.
 alias lc="cl"
@@ -44,35 +38,6 @@ function mc() {
 ll () {
     CLICOLOR_FORCE=1 l $* | less -r
 }
-
-## WESTFIELD STUFF
-
-# Set-up Westfield environment
-
-function wf() {
-  if [ $# = 0 ]; then
-    cd ~/Projects/westfield
-  else
-    cd ~/Projects/westfield/$@
-      fi
-  rvm gemset use westfield
-}
-
-function wfv() {
-  wf
-  mvim .
-}
-
-function sd() {
-  svn diff $@ | colordiff
-}
-
-# ssh with port forwarding for VNC
-function sv() {
-  ssh -L 5901:localhost:5901 $* -f sleep 1
-  open vnc://localhost:5901
-}
-
 
 
 ##Prompt Stuff##
@@ -145,3 +110,6 @@ function sv() {
 
 
 
+
+### Added by the Heroku Toolbelt
+export PATH="/usr/local/heroku/bin:$PATH"
