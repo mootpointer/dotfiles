@@ -8,28 +8,34 @@ call vundle#rc()
 " required! 
 Bundle 'gmarik/vundle'
 
-Bundle 'kien/ctrlp.vim'
+Bundle 'bling/vim-airline'
+Bundle 'tpope/vim-surround'
 Bundle 'tpope/vim-fugitive'
 Bundle 'majutsushi/tagbar'
 Bundle 'ervandew/supertab'
-Bundle 'scrooloose/nerdtree'
-Bundle 'ddollar/nerdcommenter'
+Bundle 'scrooloose/nerdcommenter'
 Bundle 'mileszs/ack.vim'
 Bundle 'altercation/vim-colors-solarized'
-" Bundle 'underlog/ClosePairs'
-Bundle 'buffkill.vim'
+Bundle 'bufkill.vim'
 Bundle 'YankRing.vim'
-Bundle 'Lokaltog/vim-powerline'
 Bundle 'kchmck/vim-coffee-script'
 Bundle 'tpope/vim-cucumber'
 Bundle 'jeetsukumaran/vim-buffergator'
 Bundle 'tpope/vim-rails'
-Bundle 'tpope/vim-ruby'
+Bundle 'vim-ruby/vim-ruby'
 Bundle 'tpope/vim-endwise'
 Bundle 'scratch.vim'
 Bundle 'scrooloose/syntastic'
 Bundle 'godlygeek/tabular'
 Bundle 'Raimondi/delimitMate'
+Bundle 'slim-template/vim-slim'
+Bundle 'kien/ctrlp.vim'
+Bundle 'mustache/vim-mustache-handlebars'
+Plugin 'elixir-lang/vim-elixir'
+Plugin 'kylef/apiblueprint.vim'
+
+" Turn the mouse on!
+set mouse=a
 
 " Indenting pligin....
 filetype plugin indent on
@@ -40,7 +46,9 @@ color solarized
 set number
 set ruler
 syntax on
-let g:Powerline_symbols = 'fancy'
+set guifont=Inconsolata\ for\ Powerline
+let g:airline_powerline_fonts=1
+let g:airline#extensions#tabline#enabled = 1
 
 " Set encoding
 set encoding=utf-8
@@ -76,6 +84,18 @@ map <Leader>n :NERDTreeToggle<CR>
 map <Leader>rt :!ctags --extra=+f -R *<CR><CR>
 map <C-\> :tnext<CR>
 
+" The Silver Searcher
+if executable('ag')
+  " Use ag over grep
+  set grepprg=ag\ --nogroup\ --nocolor
+
+  " Use ag in CtrlP for listing files. Lightning fast and respects .gitignore
+  let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""'
+
+  " ag is fast enough that CtrlP doesn't need to cache
+  let g:ctrlp_use_caching = 0
+endif
+
 " Remember last location in file
 if has("autocmd")
   au BufReadPost * if line("'\"") > 0 && line("'\"") <= line("$")
@@ -89,12 +109,13 @@ function s:setupWrapping()
 endfunction
 
 " Thorfile, Rakefile, Vagrantfile and Gemfile are Ruby
-au BufRead,BufNewFile {Gemfile,Rakefile,Vagrantfile,Thorfile,config.ru}    set ft=ruby
+au BufRead,BufNewFile {Gemfile,Rakefile,Vagrantfile,Thorfile,config.ru,*.rabl}    set ft=ruby
 
 " add json syntax highlighting
 au BufNewFile,BufRead *.json set ft=javascript
 
 au BufRead,BufNewFile *.txt call s:setupWrapping()
+
 
 " allow backspacing over everything in insert mode
 set backspace=indent,eol,start
@@ -121,7 +142,7 @@ map <Leader>e :e <C-R>=expand("%:p:h") . "/" <CR>
 
 " Enable syntastic syntax checking
 let g:syntastic_enable_signs=1
-let g:syntastic_quiet_warnings=1
+let g:syntastic_quiet_messages = {'level': 'warnings'}
 
 " gist-vim defaults
 if has("mac")
