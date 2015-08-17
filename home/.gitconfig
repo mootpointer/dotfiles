@@ -1,0 +1,24 @@
+
+[hub]
+protocol = https
+
+[credential]
+helper = /opt/boxen/bin/boxen-git-credential
+
+[core]
+excludesfile = /opt/boxen/config/git/gitignore
+[user]
+	name = Andrew Harvey
+	email = andrew@mootpointer.com
+[push]
+	default = simple
+[alias]
+	co = checkout
+  l = log --oneline --graph --decorate --all
+[merge]
+	tool = p4mergetool
+[mergetool "p4mergetool"]
+	cmd = /opt/homebrew-cask/Caskroom/p4merge/2014.2/p4merge.app/Contents/Resources/launchp4merge $PWD/$BASE $PWD/$REMOTE $PWD/$LOCAL $PWD/$MERGED
+	trustExitCode = false
+[mergetool]
+	keepBackup = false
