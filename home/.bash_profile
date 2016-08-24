@@ -1,5 +1,5 @@
 source ~/.bashrc
-
+source ~/.shell_prompt.sh
 
 export EDITOR='nvim -c "au VimLeave * !open -a iTerm"'
 
@@ -17,6 +17,7 @@ export GREP_OPTIONS='--color=auto'
 ##Aliases
 alias l="ls -laTGih"
 alias gp="ps -ef | grep"
+alias be="bundle exec"
 
 # Compress the cd, ls -l series of commands.
 alias lc="cl"
@@ -108,7 +109,9 @@ ll () {
 
 # export PROMPT_COMMAND="_update_ps1"
 
-
+  if [ -f $(brew --prefix)/etc/bash_completion ]; then
+    . $(brew --prefix)/etc/bash_completion
+  fi
 
 
 ### Added by the Heroku Toolbelt

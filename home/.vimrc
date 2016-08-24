@@ -1,8 +1,8 @@
 set nocompatible               " be iMproved
 filetype off                   " required!
 
-set rtp+=~/.vim/bundle/vundle/
-call vundle#rc()
+set rtp+=~/.vim/bundle/Vundle.vim
+call vundle#begin()
 
 " let Vundle manage Vundle
 " required! 
@@ -33,6 +33,12 @@ Bundle 'kien/ctrlp.vim'
 Bundle 'mustache/vim-mustache-handlebars'
 Plugin 'elixir-lang/vim-elixir'
 Plugin 'kylef/apiblueprint.vim'
+Plugin 'edkolev/promptline.vim'
+
+" All of your Plugins must be added before the following line
+call vundle#end()            " required
+filetype plugin indent on    " required
+
 
 " Turn the mouse on!
 set mouse=a
