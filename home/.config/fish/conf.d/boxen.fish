@@ -41,7 +41,7 @@ set -x BOXEN_SRC_DIR /Users/harvand/src
 
 # Expose boxen's binary download location
 set -x BOXEN_DOWNLOAD_URL_BASE http://boxen-downloads.s3.amazonaws.com
-set -x HOMEBREW_ROOT /opt/boxen/homebrew
+set -x HOMEBREW_ROOT /usr/local
 set -x HOMEBREW_CACHE /opt/boxen/cache/homebrew
 
 set -x BOXEN_HOMEBREW_BOTTLE_URL http://boxen-downloads.s3.amazonaws.com/homebrew
@@ -103,7 +103,7 @@ set -x PATH $RBENV_ROOT/bin $PATH
 
 # Make all the fancy `hub` shortcuts available via `git`.
 
-eval (/opt/boxen/homebrew/bin/hub alias -s)
+eval (/usr/local/bin/hub alias -s)
 
 # Postgres config vars
 
