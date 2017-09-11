@@ -60,12 +60,12 @@ set -x PATH $HOMEBREW_ROOT/bin $HOMEBREW_ROOT/sbin $PATH
 
 # Add homebrew'd stuff to the manpath.
 
-set -x MANPATH $HOMEBREW_ROOT/share/man $MANPATH
+#set -x MANPATH $HOMEBREW_ROOT/share/man $MANPATH
 # Expose GitHub credentials
 
 set -x BOXEN_GITHUB_LOGIN mootpointer
-# Put node-build on PATH
-set -x PATH /opt/boxen/node-build/bin $PATH
+# Put nodenv on PATH
+set -x PATH /opt/boxen/nodenv/bin $PATH
 
 # Configure NODENV_ROOT and put NODENV_ROOT/bin on PATH
 set -x NODENV_ROOT /opt/boxen/nodenv
@@ -109,7 +109,7 @@ eval (/opt/boxen/homebrew/bin/hub alias -s)
 
 set -x BOXEN_POSTGRESQL_HOST 127.0.0.1
 set -x BOXEN_POSTGRESQL_PORT 15432
-set -x BOXEN_POSTGRESQL_URL "postgres://$BOXEN_POSTGRESQL_HOST $BOXEN_POSTGRESQL_PORT/"
+set -x BOXEN_POSTGRESQL_URL "postgres://$BOXEN_POSTGRESQL_HOST:$BOXEN_POSTGRESQL_PORT/"
 
 # soft global overrides
 # set -x [ -z "$PGPORT" ]; and export PGPORT $BOXEN_POSTGRESQL_PORT
