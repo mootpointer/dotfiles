@@ -2,9 +2,6 @@
 [hub]
 protocol = https
 
-[credential]
-helper = /opt/boxen/bin/boxen-git-credential
-
 [core]
 excludesfile = /opt/boxen/config/git/gitignore
 [user]
@@ -19,7 +16,9 @@ excludesfile = /opt/boxen/config/git/gitignore
 	tool = p4mergetool
 	ff = only
 [mergetool "p4mergetool"]
-	cmd = ~/Applications/p4merge.app/Contents/Resources/launchp4merge $PWD/$BASE $PWD/$REMOTE $PWD/$LOCAL $PWD/$MERGED
+	cmd = /Applications/p4merge.app/Contents/Resources/launchp4merge $PWD/$BASE $PWD/$REMOTE $PWD/$LOCAL $PWD/$MERGED
 	trustExitCode = false
 [mergetool]
 	keepBackup = false
+[credential]
+	helper = osxkeychain

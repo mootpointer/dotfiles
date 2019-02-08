@@ -7,14 +7,6 @@
 # set +e
 # set +u
 
-# Make the root of Boxen available.
-
-set -x BOXEN_HOME /opt/boxen
-
-# Add any binaries specific to Boxen to the path.
-
-set -x PATH $BOXEN_HOME/bin $PATH
-
 ###### PARSE ERR: for f in $BOXEN_HOME/env.d/*.sh ; do
 ###### PARSE ERR:   if [ -f $f ] ; then
 ###### PARSE ERR:     source $f
@@ -24,11 +16,9 @@ set -x PATH $BOXEN_HOME/bin $PATH
 # Boxen is active.
 
 ###### PARSE ERR: if [ -d "$BOXEN_HOME/repo/.git" ]; then
-set -x BOXEN_SETUP_VERSION (env GIT_DIR=$BOXEN_HOME/repo/.git git rev-parse --short HEAD)
 ###### PARSE ERR: else
 ###### PARSE ERR:   echo "Boxen could not load properly!"
 ###### PARSE ERR: fi
-set -x HOMEBREW_CASK_OPTS "--caskroom=/opt/homebrew-cask/Caskroom"
 # Expose basic setup paths. BOXEN_HOME is already exported at the top level.
 
 set -x BOXEN_BIN_DIR /opt/boxen/bin
@@ -41,35 +31,21 @@ set -x BOXEN_SRC_DIR /Users/harvand/src
 
 # Expose boxen's binary download location
 set -x BOXEN_DOWNLOAD_URL_BASE http://boxen-downloads.s3.amazonaws.com
-set -x HOMEBREW_ROOT /usr/local
-set -x HOMEBREW_CACHE /opt/boxen/cache/homebrew
 
 set -x BOXEN_HOMEBREW_BOTTLE_URL http://boxen-downloads.s3.amazonaws.com/homebrew
 
 
-set -x CFLAGS "-I$HOMEBREW_ROOT/include"
-
-
-
-set -x LDFLAGS "-L$HOMEBREW_ROOT/lib"
-
-
 # Add homebrew'd stuff to the path.
 
-set -x PATH $HOMEBREW_ROOT/bin $HOMEBREW_ROOT/sbin $PATH
+# set -x PATH $HOMEBREW_ROOT/bin $HOMEBREW_ROOT/sbin $PATH
 
 # Add homebrew'd stuff to the manpath.
 
 #set -x MANPATH $HOMEBREW_ROOT/share/man $MANPATH
 # Expose GitHub credentials
 
-set -x BOXEN_GITHUB_LOGIN mootpointer
-# Put nodenv on PATH
-set -x PATH /opt/boxen/nodenv/bin $PATH
 
 # Configure NODENV_ROOT and put NODENV_ROOT/bin on PATH
-set -x NODENV_ROOT /opt/boxen/nodenv
-set -x PATH $NODENV_ROOT/bin $PATH
 
 # Load nodenv
 ###### PARSE ERR: eval "$(nodenv init -)"
@@ -78,20 +54,15 @@ set -x PATH $NODENV_ROOT/bin $PATH
 ###### PARSE ERR: current_node() {
 ###### PARSE ERR:   echo "$(nodenv version-name)"
 ###### PARSE ERR: }
-set -x PYENV_ROOT /opt/boxen/pyenv
 
-set -x PATH /opt/boxen/pyenv/bin $PATH
 
 ###### PARSE ERR: eval "$(pyenv init -)"
 # Put ruby-build on PATH
-set -x PATH /opt/boxen/ruby-build/bin $PATH
 
 # Allow bundler to use all the cores for parallel installation
 set -x BUNDLE_JOBS 8
 
 # Configure RBENV_ROOT and put RBENV_ROOT/bin on PATH
-set -x RBENV_ROOT /opt/boxen/rbenv
-set -x PATH $RBENV_ROOT/bin $PATH
 
 # Load rbenv
 ###### PARSE ERR: eval "$(rbenv init -)"
@@ -125,6 +96,4 @@ set -x PATH bin $PATH
 
 set -x BOXEN_REDIS_PORT 16379
 set -x BOXEN_REDIS_URL "redis://localhost:$BOXEN_REDIS_PORT/"
-set -x PATH /opt/boxen/rbenv/shims /opt/boxen/rbenv/bin $PATH
-rbenv rehash 2>/dev/null
 function git ; hub $argv ; end
