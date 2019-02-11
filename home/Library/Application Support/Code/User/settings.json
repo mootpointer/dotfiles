@@ -1,0 +1,11 @@
+{
+    "vim.leader": " ",
+    "workbench.colorTheme": "Solarized Dark",
+    "diffEditor.renderSideBySide": false,
+    "window.zoomLevel": 0,
+    "terminal.explorerKind": "external",
+    "terminal.external.osxExec": "iTerm.app",
+    "terminal.integrated.fontSize": 16,
+    "git.autofetch": true,
+    "git.confirmSync": false
+}
