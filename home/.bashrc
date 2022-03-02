@@ -4,3 +4,4 @@ export PATH="/usr/local/bin:$PATH"
 test -s "$HOME/.kiex/scripts/kiex" && source "$HOME/.kiex/scripts/kiex"
 
 source "$HOME/.homesick/repos/homeshick/homeshick.sh"
+. "$HOME/.cargo/env"
