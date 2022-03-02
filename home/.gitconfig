@@ -22,3 +22,5 @@ excludesfile = /opt/boxen/config/git/gitignore
 	keepBackup = false
 [credential]
 	helper = osxkeychain
+[init]
+	defaultBranch = main
