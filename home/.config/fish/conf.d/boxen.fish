@@ -21,19 +21,6 @@
 ###### PARSE ERR: fi
 # Expose basic setup paths. BOXEN_HOME is already exported at the top level.
 
-set -x BOXEN_BIN_DIR /opt/boxen/bin
-set -x BOXEN_CONFIG_DIR /opt/boxen/config
-set -x BOXEN_DATA_DIR /opt/boxen/data
-set -x BOXEN_ENV_DIR /opt/boxen/env.d
-set -x BOXEN_LOG_DIR /opt/boxen/log
-set -x BOXEN_SOCKET_DIR /opt/boxen/data/project-sockets
-set -x BOXEN_SRC_DIR /Users/harvand/src
-
-# Expose boxen's binary download location
-set -x BOXEN_DOWNLOAD_URL_BASE http://boxen-downloads.s3.amazonaws.com
-
-set -x BOXEN_HOMEBREW_BOTTLE_URL http://boxen-downloads.s3.amazonaws.com/homebrew
-
 
 # Add homebrew'd stuff to the path.
 
@@ -42,58 +29,10 @@ set -x BOXEN_HOMEBREW_BOTTLE_URL http://boxen-downloads.s3.amazonaws.com/homebre
 # Add homebrew'd stuff to the manpath.
 
 #set -x MANPATH $HOMEBREW_ROOT/share/man $MANPATH
-# Expose GitHub credentials
-
-
-# Configure NODENV_ROOT and put NODENV_ROOT/bin on PATH
-
-# Load nodenv
-###### PARSE ERR: eval "$(nodenv init -)"
-
-# Helper for shell prompts and the like
-###### PARSE ERR: current_node() {
-###### PARSE ERR:   echo "$(nodenv version-name)"
-###### PARSE ERR: }
-
-
-###### PARSE ERR: eval "$(pyenv init -)"
-# Put ruby-build on PATH
 
 # Allow bundler to use all the cores for parallel installation
 set -x BUNDLE_JOBS 8
 
-# Configure RBENV_ROOT and put RBENV_ROOT/bin on PATH
-
-# Load rbenv
-###### PARSE ERR: eval "$(rbenv init -)"
-
-# Helper for shell prompts and the like
-###### PARSE ERR: current-ruby() {
-###### PARSE ERR:   echo "$(rbenv version-name)"
-###### PARSE ERR: }
 
 # Make all the fancy `hub` shortcuts available via `git`.
-
 eval (/usr/local/bin/hub alias -s)
-
-# Postgres config vars
-
-set -x BOXEN_POSTGRESQL_HOST 127.0.0.1
-set -x BOXEN_POSTGRESQL_PORT 15432
-set -x BOXEN_POSTGRESQL_URL "postgres://$BOXEN_POSTGRESQL_HOST:$BOXEN_POSTGRESQL_PORT/"
-
-# soft global overrides
-# set -x [ -z "$PGPORT" ]; and export PGPORT $BOXEN_POSTGRESQL_PORT
-# Autocomplete for boxen
-
-
-###### PARSE ERR: type complete >/dev/null && complete -C /opt/boxen/repo/modules/boxen/lib/boxen/autocomplete.rb -o default boxen
-# Add ./bin to the path. This happens after initialization to make
-# sure local stubs take precedence over stuff like rbenv.
-
-set -x PATH bin $PATH
-# Let the env know where Redis runs.
-
-set -x BOXEN_REDIS_PORT 16379
-set -x BOXEN_REDIS_URL "redis://localhost:$BOXEN_REDIS_PORT/"
-function git ; hub $argv ; end
