@@ -35,4 +35,4 @@ set -x BUNDLE_JOBS 8
 
 
 # Make all the fancy `hub` shortcuts available via `git`.
-eval (/usr/local/bin/hub alias -s)
+eval (/opt/homebrew/bin/hub alias -s)
